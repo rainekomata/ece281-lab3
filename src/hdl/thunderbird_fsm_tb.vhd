@@ -65,6 +65,7 @@ architecture test_bench of thunderbird_fsm_tb is
 	  );
 	end component thunderbird_fsm;
 
+
 	-- test I/O signals
 	-- Inputs
 	signal w_reset : std_logic := '0';
@@ -72,8 +73,8 @@ architecture test_bench of thunderbird_fsm_tb is
 	signal w_left  : std_logic := '0';
 	signal w_right : std_logic := '0';
 	-- Outputs
-	signal w_lights_L : std_logic_vector(2 downto 0) := "00";
-	signal w_lights_R : std_logic_vector(2 downto 0) := "00";
+	signal w_lights_L : std_logic_vector(2 downto 0) := "000";
+	signal w_lights_R : std_logic_vector(2 downto 0) := "000";
 	-- constants
 	constant k_clk_period : time := 10 ns;
 	
@@ -103,12 +104,11 @@ begin
 	
 	-- Test Plan Process --------------------------------
 	sim_proc: process
-        begin
+    begin
             -- reset       
             w_reset <= '1';
             wait for k_clk_period*1;
               assert w_lights_L = "000" and w_lights_R = "000" report "bad reset" severity failure;
-            
             w_reset <= '0';
             wait for k_clk_period*1;
             
