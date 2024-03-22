@@ -115,7 +115,7 @@ begin
             -- left signal
             w_left <= '1';
             wait for k_clk_period * 1;
-              assert w_lights_L = "001" and w_lights_R = "000" report "bad left step 1" severity failure;
+                assert w_lights_L = "001" and w_lights_R = "000" report "bad left step 1" severity failure;
             wait for k_clk_period * 1;
                 assert w_lights_L = "011" and w_lights_R = "000" report "bad left step 2" severity failure;
             wait for k_clk_period * 1;
