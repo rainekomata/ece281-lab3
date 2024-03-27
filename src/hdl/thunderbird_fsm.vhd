@@ -109,10 +109,10 @@ begin
 	-- Next state logic 
 	f_Q_next(0) <= f_Q(1);
     f_Q_next(1) <= f_Q(2);
-    f_Q_next(2) <= f_Q(7) and i_left and not i_right;
+    f_Q_next(2) <= f_Q(7) and i_left and (not i_right);
     f_Q_next(3) <= f_Q(4);
     f_Q_next(4) <= f_Q(5);
-    f_Q_next(5) <= f_Q(7) and not i_left and i_right;
+    f_Q_next(5) <= f_Q(7) and (not i_left) and i_right;
     f_Q_next(6) <= f_Q(7) and i_left and i_right;
     f_Q_next(7) <= (f_Q(7) and (not i_left) and (not i_right)) or f_Q(6) or f_Q(3) or f_Q(0);
     -- Output logic
@@ -125,7 +125,14 @@ begin
     ---------------------------------------------------------------------------------
 
 	-- PROCESSES --------------------------------------------------------------------
-    
+register_proc : process (i_clk, i_reset)
+    begin
+        if i_reset = '1' then
+            f_Q <= "10000000";
+        elsif (rising_edge(i_clk)) then
+            f_Q <= f_Q_next;
+        end if;
+    end process register_proc;
 	-----------------------------------------------------					   
 				  
 end thunderbird_fsm_arch;

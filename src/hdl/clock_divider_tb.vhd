@@ -64,13 +64,13 @@ architecture test_bench of clock_divider_tb is
     end component clock_divider;
 
 	-- Setup test clk (20 ns --> 50 MHz)
-	constant k_clk_period	: time 		:= 20 ns;
-	signal clk			 	: std_logic	:= '0';
-
-	signal reset, slow_clk	: std_logic	:= '0';
-	
-	-- Set clk divide amount here
-	constant k_clock_divs	: natural	:= 10;
+        constant k_clk_period	: time 		:= 20 ns;
+        signal clk			 	: std_logic	:= '0';
+    
+        signal reset, slow_clk	: std_logic	:= '0';
+        
+        -- Set clk divide amount here
+        constant k_clock_divs	: natural	:= 10;
 	
 begin
 	-- PORT MAPS ----------------------------------------

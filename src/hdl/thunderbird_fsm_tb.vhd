@@ -58,10 +58,10 @@ architecture test_bench of thunderbird_fsm_tb is
 	
 	component thunderbird_fsm is 
 	  port(
-		i_clk, i_reset   : in std_logic;
-        i_left, i_right  : in std_logic;
-        o_lights_L       : out std_logic_vector (2 downto 0);
-        o_lights_R       : out std_logic_vector (2 downto 0)
+    i_clk, i_reset   : in std_logic;
+    i_left, i_right  : in std_logic;
+    o_lights_L       : out std_logic_vector (2 downto 0);
+    o_lights_R       : out std_logic_vector (2 downto 0)
 	  );
 	end component thunderbird_fsm;
 
@@ -88,7 +88,7 @@ begin
             i_right => w_right,
             o_lights_L => w_lights_L,
             o_lights_R => w_lights_R
-            );
+        );
 	-----------------------------------------------------
 	
 	-- PROCESSES ----------------------------------------	
@@ -114,51 +114,51 @@ begin
             
             -- left signal
             w_left <= '1';
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "001" and w_lights_R = "000" report "bad left step 1" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "011" and w_lights_R = "000" report "bad left step 2" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "111" and w_lights_R = "000" report "bad left step 3" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "000" report "bad left step 4" severity failure;
-            wait for k_clk_period * 1; 
+            wait for k_clk_period*1; 
                 assert w_lights_L = "001" and w_lights_R = "000" report "bad left step 5" severity failure;
             w_left <= '0';
-            wait for k_clk_period * 5;
+            wait for k_clk_period*4;
             
             -- right signal
             w_right <= '1';
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
               assert w_lights_L = "000" and w_lights_R = "001" report "bad right step 1" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "011" report "bad right step 2" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "111" report "bad right step 3" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "000" report "bad right step 4" severity failure;
-            wait for k_clk_period * 1; 
+            wait for k_clk_period*1; 
                 assert w_lights_L = "000" and w_lights_R = "001" report "bad right step 5" severity failure;
             w_right <= '0';
-            wait for k_clk_period * 5;
+            wait for k_clk_period*4;
 
             -- hazard signal
             w_left <= '1';
             w_right <= '1';
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "111" and w_lights_R = "111" report "bad hazard step 1" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "000" report "bad hazard step 2" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "111" and w_lights_R = "111" report "bad hazard step 3" severity failure;
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "000" and w_lights_R = "000" report "bad hazard step 4" severity failure; 
-            wait for k_clk_period * 1;
+            wait for k_clk_period*1;
                 assert w_lights_L = "111" and w_lights_R = "111" report "bad hazard step 5" severity failure;
             
             w_left <= '0';
             w_right <= '0';
-            wait for k_clk_period * 5;
+            wait for k_clk_period*4;
             
             wait;
         end process;
